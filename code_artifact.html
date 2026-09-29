@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>프로젝트 공정·일정관리 실무 가이드</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+        body {
+            font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, Roboto, 'Helvetica Neue', 'Segoe UI', 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', sans-serif;
+            background-color: #f1f5f9;
+        }
+        .sidebar {
+            height: 100vh;
+            position: sticky;
+            top: 0;
+        }
+        .content-section {
+            display: none;
+            animation: fadeIn 0.3s ease-in-out;
+        }
+        .content-section.active {
+            display: block;
+        }
+        .nav-item.active {
+            background-color: #eff6ff;
+            color: #1d4ed8;
+            font-weight: 700;
+            border-right: 4px solid #1d4ed8;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        table { border-collapse: separate; border-spacing: 0; }
+        th, td { border-bottom: 1px solid #e2e8f0; }
+        th { background-color: #f8fafc; font-weight: 600; color: #334155; }
+    </style>
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            document.querySelectorAll('.content-section').forEach(el => {
+                el.classList.remove('active');
+            });
+            // Show target section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Update active state in nav
+            document.querySelectorAll('.nav-item').forEach(el => {
+                el.classList.remove('active');
+            });
+            event.currentTarget.classList.add('active');
+        }
+    </script>
+</head>
+<body class="text-slate-800 flex flex-col md:flex-row min-h-screen">
+
+    <!-- Sidebar Navigation -->
+    <aside class="w-full md:w-72 bg-white border-r border-slate-200 sidebar shadow-sm z-10 flex flex-col hidden md:flex">
+        <div class="p-6 border-b border-slate-200">
+            <h1 class="text-xl font-bold text-blue-800 leading-tight">
+                <i class="fas fa-project-diagram mr-2"></i>공정·일정관리 체계
+            </h1>
+            <p class="text-xs text-slate-500 mt-2">Reference: 경험집(실무 가이드북)</p>
+        </div>
+        <nav class="flex-1 py-4">
+            <ul class="space-y-1">
+                <li>
+                    <button onclick="showSection('overview')" class="nav-item active w-full text-left px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 transition-colors flex items-center">
+                        <i class="fas fa-home w-6 text-center mr-2"></i> 개요 및 핵심 기능
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showSection('matrix')" class="nav-item w-full text-left px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 transition-colors flex items-center">
+                        <i class="fas fa-table w-6 text-center mr-2"></i> 단계별 매트릭스
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showSection('levels')" class="nav-item w-full text-left px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 transition-colors flex items-center">
+                        <i class="fas fa-layer-group w-6 text-center mr-2"></i> 공정표 관리 단계 (Level 1~4)
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showSection('measuring')" class="nav-item w-full text-left px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 transition-colors flex items-center">
+                        <i class="fas fa-chart-line w-6 text-center mr-2"></i> 진도 측정 및 공정 통제
+                    </button>
+                </li>
+                <li>
+                    <button onclick="showSection('roles')" class="nav-item w-full text-left px-6 py-3 text-sm text-slate-600 hover:bg-slate-50 transition-colors flex items-center">
+                        <i class="fas fa-users w-6 text-center mr-2"></i> 책임 및 역할 (R&R)
+                    </button>
+                </li>
+            </ul>
+        </nav>
+        <div class="p-6 bg-slate-50 border-t border-slate-200 text-xs text-slate-400">
+            Document Version: 1.0<br>
+            Based on Project Procedures
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="flex-1 p-6 lg:p-10 max-w-6xl w-full mx-auto overflow-y-auto">
+
+        <!-- 1. 개요 및 핵심 기능 -->
+        <section id="overview" class="content-section active">
+            <header class="mb-8 border-b border-slate-200 pb-4">
+                <h2 class="text-3xl font-bold text-slate-800">개요 및 4대 핵심 기능</h2>
+                <p class="text-slate-500 mt-2">프로젝트 라이프 사이클 전반을 아우르는 공정관리(Schedule & Time Management)의 뼈대입니다.</p>
+            </header>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 mb-8 rounded-r-lg">
+                <p class="text-sm text-blue-800">
+                    본 가이드는 <strong>경험집(실무 가이드북)</strong>의 절차서(Project Procedure Manual)를 기반으로 작성되었습니다. 발주자의 요구사항을 충족시키고 성공적인 프로젝트 완수를 위한 종합적인 공정관리 실무 지침을 제공합니다.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Planning -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-600 mb-4">
+                        <i class="fas fa-map-marked-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">1. Planning (기획 및 계획)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        프로젝트 목표 달성을 위한 기본 뼈대 수립. 전체 사업기간, 작업분류체계(WBS), 조직도 및 자원 배분 계획 등 '무엇을, 언제, 어떻게' 할지 큰 그림을 그립니다.
+                    </p>
+                </div>
+                <!-- Scheduling -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center text-emerald-600 mb-4">
+                        <i class="far fa-calendar-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">2. Scheduling (공정표 개발)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        Planning을 바탕으로 세부 Activity를 도출하고, 연관관계(Logic)를 구성하여 CPM(주공정법) 기반의 기준공정표(Baseline)를 구축합니다.
+                    </p>
+                </div>
+                <!-- Progress Measuring -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 rounded-full bg-amber-100 flex items-center justify-center text-amber-600 mb-4">
+                        <i class="fas fa-tachometer-alt text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">3. Progress Measuring (공정률 측정)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        공정률관리표(S-curve) 및 진도측정시스템(PPMS)을 통해 설계, 구매, 시공, 시운전 각 분야의 가중치(Weight Value) 대비 실제 실적(% Complete)을 계량화합니다.
+                    </p>
+                </div>
+                <!-- Schedule Control -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <div class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center text-rose-600 mb-4">
+                        <i class="fas fa-sliders-h text-lg"></i>
+                    </div>
+                    <h3 class="text-lg font-bold mb-2">4. Schedule Control (공정 통제)</h3>
+                    <p class="text-sm text-slate-600 leading-relaxed">
+                        계획 대비 실적의 차이(Variance)를 분석하고 지연 발생 시 만회대책(Recovery Plan) 수립, 공정표 업데이트, EOT 클레임 대응 등 현행화 관리를 수행합니다.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. 단계별 매트릭스 -->
+        <section id="matrix" class="content-section">
+            <header class="mb-8 border-b border-slate-200 pb-4">
+                <h2 class="text-3xl font-bold text-slate-800">라이프 사이클 단계별 매트릭스</h2>
+                <p class="text-slate-500 mt-2">단계별로 요구되는 핵심 공정관리 실무를 정리한 매트릭스입니다.</p>
+            </header>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200 overflow-x-auto">
+                <table class="w-full text-sm text-left">
+                    <thead>
+                        <tr>
+                            <th class="px-4 py-3 bg-slate-100 w-32 border-r border-slate-200">구분</th>
+                            <th class="px-4 py-3 bg-indigo-50 w-1/4">1. 초기단계 (구상/기획)</th>
+                            <th class="px-4 py-3 bg-blue-50 w-1/4">2. 실행준비 (설계/구매)</th>
+                            <th class="px-4 py-3 bg-emerald-50 w-1/4">3. 실행/구현 (시공/시운전)</th>
+                            <th class="px-4 py-3 bg-slate-50">4. 종료단계 (인계)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="px-4 py-4 font-bold bg-slate-50 border-r border-slate-200">Planning<br><span class="text-xs font-normal text-slate-500">계획 수립</span></td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>프로젝트 공정관리절차서 작성</li>
+                                    <li>통합 WBS(작업분류체계) 구축</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>분야별 WBS 매핑</li>
+                                    <li>캘린더(휴일/기상 등) 기준 설정</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>잔여 작업 및 지연 요소 기획 점검</li>
+                                    <li>공기단축(Acceleration) 기획</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>펀치 리스트(Punch List) 처리 계획</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 font-bold bg-slate-50 border-r border-slate-200">Scheduling<br><span class="text-xs font-normal text-slate-500">일정 작성</span></td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>주요 마일스톤 설정</li>
+                                    <li>Level 1, 2 공정표 작성</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>Level 3 CPM Network 작성 및 승인 (Baseline)</li>
+                                    <li>설계출도 및 자재 조달 일정(PDS) 수립</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>Level 4 실행 공정표 (3주/6개월 단위) 운용</li>
+                                    <li>계통인계(Turn-over) 시운전 공정 연계</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>완료공정표(As-built) 작성</li>
+                                    <li>최종공정표 정리</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 font-bold bg-slate-50 border-r border-slate-200">Measuring<br><span class="text-xs font-normal text-slate-500">진도 측정</span></td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>총 예산 기반 가중치(Weight Value) 배분안 수립</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>PPMS 데이터베이스 구축</li>
+                                    <li>설계 도면, 자재 발주 실적 기성 반영</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>물량 기반 시공 공정률(%) 실적 입력</li>
+                                    <li>종합 S-Curve 실적/계획 대비 모니터링</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>최종 정산 및 기성 확정</li>
+                                </ul>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-4 py-4 font-bold bg-slate-50 border-r border-slate-200">Control<br><span class="text-xs font-normal text-slate-500">공정 통제</span></td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>사업 리스크 평가 및 예비비/여유일(Float) 식별</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>공정표 업데이트(월간) 및 Revision</li>
+                                    <li>구매 지연 추세분석</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>지연 시 만회대책(Recovery Plan) 수립</li>
+                                    <li>발주자 귀책 시 EOT Claim 분석</li>
+                                </ul>
+                            </td>
+                            <td class="px-4 py-4 text-slate-600">
+                                <ul class="list-disc pl-4 space-y-1">
+                                    <li>프로젝트 클로징 리포트(Lessons Learned)</li>
+                                </ul>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 3. 공정표 단계 -->
+        <section id="levels" class="content-section">
+            <header class="mb-8 border-b border-slate-200 pb-4">
+                <h2 class="text-3xl font-bold text-slate-800">공정표의 단계 (Schedule Hierarchy)</h2>
+                <p class="text-slate-500 mt-2"><strong>경험집(실무 가이드북)</strong>에 명시된 공정표 관리 체계(Level 1 ~ 4)입니다.</p>
+            </header>
+
+            <div class="space-y-6">
+                <!-- L1 -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0 flex items-center justify-center bg-slate-100 rounded text-center p-4">
+                        <div>
+                            <span class="block text-2xl font-black text-slate-800 mb-1">LEVEL 1</span>
+                            <span class="text-sm text-slate-500 font-medium">프로젝트 종합 공정표<br>(Project Master Schedule)</span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 flex flex-col justify-center">
+                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
+                            <li><strong>PM의 의지와 목표 설정:</strong> 프로젝트 참여자들에게 큰 방향을 제시.</li>
+                            <li><strong>작성 수준:</strong> 전반적인 프로젝트의 흐름을 한눈에 볼 수 있도록 주요일정과 마일스톤으로만 표현. (최대 60개 액티비티 권장)</li>
+                            <li><strong>주요 용도:</strong> 경영진 및 발주자 최상위 보고, 계약 주요 내용 반영.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- L2 -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6">
+                    <div class="md:w-1/4 flex-shrink-0 flex items-center justify-center bg-slate-100 rounded text-center p-4">
+                        <div>
+                            <span class="block text-2xl font-black text-slate-800 mb-1">LEVEL 2</span>
+                            <span class="text-sm text-slate-500 font-medium">프로젝트 요약 공정표<br>(Summary Schedule)</span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 flex flex-col justify-center">
+                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
+                            <li><strong>위상:</strong> Level 1 공정표를 확장하고, Level 3 CPM 공정표를 요약하여 보여주는 중간 단계.</li>
+                            <li><strong>특징:</strong> 공정 구역별, 분야별(설계, 구매, 시공) 주요 작업 그룹을 Bar-chart 형식으로 요약.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- L3 -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6 border-l-4 border-l-blue-600">
+                    <div class="md:w-1/4 flex-shrink-0 flex items-center justify-center bg-blue-50 rounded text-center p-4">
+                        <div>
+                            <span class="block text-2xl font-black text-blue-800 mb-1">LEVEL 3</span>
+                            <span class="text-sm text-blue-600 font-medium">CPM Network 공정표<br>(Project Control Schedule)</span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 flex flex-col justify-center">
+                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
+                            <li><strong>가장 핵심적인 관리 기준 (Baseline):</strong> 발전소 주요 항목 상관관계 및 CPM(Critical Path Method) 분석 적용.</li>
+                            <li><strong>작성 및 업데이트:</strong> 최소 매월 1회 업데이트 하여 발주자 제출 (발주자용/내부용 이원화 운영). Critical Path 지연 분석 수행.</li>
+                            <li><strong>액티비티 수:</strong> 착수 단계(1,000~1,500개) ➔ 시공/시운전 단계(중분류 당 200~400개 세분화).</li>
+                            <li>마일스톤과 준공의 단축/지연을 판단하는 공식적인 척도.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- L4 -->
+                <div class="bg-white p-5 rounded-lg border border-slate-200 shadow-sm flex flex-col md:flex-row gap-6 border-l-4 border-l-emerald-500">
+                    <div class="md:w-1/4 flex-shrink-0 flex items-center justify-center bg-emerald-50 rounded text-center p-4">
+                        <div>
+                            <span class="block text-2xl font-black text-emerald-700 mb-1">LEVEL 4</span>
+                            <span class="text-sm text-emerald-600 font-medium">실행 공정표<br>(Detail Work Schedule)</span>
+                        </div>
+                    </div>
+                    <div class="md:w-3/4 flex flex-col justify-center">
+                        <ul class="list-disc pl-5 text-slate-700 space-y-2">
+                            <li><strong>현장 실무 중심:</strong> 작성 당시의 최신 상황과 실적이 가장 구체적으로 반영된 시공/업무 단위 공정표. (착수 1개월 전 작성)</li>
+                            <li><strong>운영 형태:</strong> 일일작업 기준, 3주 단위(TWDS) 혹은 6개월(EMRS) 단위 공정표, Interface 공정표, 시운전 일정 등.</li>
+                            <li>공정률 측정의 기초자료가 되며, 여기서 도출된 지연 사항이 Level 3에 반영됨.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. 진도 측정 및 통제 -->
+        <section id="measuring" class="content-section">
+            <header class="mb-8 border-b border-slate-200 pb-4">
+                <h2 class="text-3xl font-bold text-slate-800">진도 측정 및 공정 통제</h2>
+                <p class="text-slate-500 mt-2"><strong>경험집(실무 가이드북)</strong>의 PPMS 연계 및 만회/클레임 대책 수립 절차입니다.</p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- 공정률 관리 (PPMS) -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-blue-800">
+                        <i class="fas fa-chart-pie mr-2"></i>공정률 관리 (S-Curve & PPMS)
+                    </h3>
+                    <div class="bg-white p-5 border border-slate-200 rounded-lg shadow-sm h-full">
+                        <ul class="space-y-4 text-sm text-slate-700">
+                            <li>
+                                <strong>종합/분야별 S-Curve 운영:</strong> 설계, 구매, 시공, 시운전 단계별 공정률관리표와 종합 공정률 S-Curve(누적곡선)를 매월 생성하여 추세를 분석합니다.
+                            </li>
+                            <li>
+                                <strong>성과측정시스템(PPMS) 연계:</strong> 공정률 산정은 단순히 날짜가 지남에 따른 것이 아니라, 단위 작업별 가중치(Weight Value)를 적용한 물리적 기성 측정을 원칙으로 합니다.
+                            </li>
+                            <li>
+                                <strong>업데이트 기준일 (Data Date / Time Now):</strong> 공정 회의 및 월간 보고를 위해 사전 합의된 기준일(Cut-off date)까지의 실적(Actual Start/Finish, % Complete)을 반영합니다.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 통제 및 만회대책 -->
+                <div>
+                    <h3 class="text-xl font-bold mb-4 flex items-center text-red-700">
+                        <i class="fas fa-exclamation-triangle mr-2"></i>공정 지연 분석 및 만회/EOT 대책
+                    </h3>
+                    <div class="bg-white p-5 border border-slate-200 rounded-lg shadow-sm h-full">
+                        <ul class="space-y-4 text-sm text-slate-700">
+                            <li>
+                                <strong>만회대책 (Recovery Plan):</strong> 계약자 귀책 사유로 마일스톤이나 준공이 지연될 것으로 예상될 때 수립 및 이행해야 하는 필수 대책입니다. 
+                            </li>
+                            <li>
+                                <strong>촉진계획 (Acceleration):</strong> 발주자 사유로 지연이 발생했으나 발주자가 지시하여 작성하는 계획. (발주자 승인 시 이행)
+                            </li>
+                            <li>
+                                <strong>EOT Claim 관리:</strong> 발주자의 요구, 기상 악화, 불가항력 등으로 인한 공기 연장(Extension of Time) 클레임 발생 시 공정관리자(Scheduler)는 Level 3 공정표의 Critical Path를 기반으로 지연 분석(Delay Analysis)을 수행 및 입증합니다.
+                            </li>
+                            <li>
+                                <strong>최종공정표 (As-Built):</strong> 프로젝트 종료 후 모든 실적 일정(실제 시작일/종료일, 변경된 로직)이 반영된 이력 공정표입니다.
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. 역할과 책임 (R&R) -->
+        <section id="roles" class="content-section">
+            <header class="mb-8 border-b border-slate-200 pb-4">
+                <h2 class="text-3xl font-bold text-slate-800">조직별 책임과 역할 (R&R)</h2>
+                <p class="text-slate-500 mt-2">성공적인 공정관리를 위해 각 책임자들의 명확한 업무 범위 지정이 필수입니다.</p>
+            </header>
+
+            <div class="bg-white rounded-xl shadow-sm border border-slate-200">
+                <div class="divide-y divide-slate-100">
+                    <div class="p-4 md:p-6 hover:bg-slate-50 transition-colors">
+                        <h4 class="font-bold text-lg text-slate-800 mb-1"><i class="fas fa-user-tie text-blue-600 mr-2"></i>PM (사업관리 책임자)</h4>
+                        <p class="text-sm text-slate-600 mb-2">프로젝트 총괄 공정관리 책임 및 발주자 대응.</p>
+                        <ul class="list-disc pl-5 text-sm text-slate-500">
+                            <li>작업분류체계(WBS) 작성 주관 및 종합공정표(Level 1) 목표 설정/승인.</li>
+                            <li>적합한 자격의 공정관리팀 조직 구성 및 절차서 이행 확인.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 md:p-6 hover:bg-slate-50 transition-colors">
+                        <h4 class="font-bold text-lg text-slate-800 mb-1"><i class="fas fa-drafting-compass text-indigo-600 mr-2"></i>EM (설계 책임자) & PPM (구매 책임자)</h4>
+                        <p class="text-sm text-slate-600 mb-2">분야별 공정표(도면 출도 및 기자재 공급 일정) 관리 및 발주자 대응.</p>
+                        <ul class="list-disc pl-5 text-sm text-slate-500">
+                            <li>설계/구매 WBS 작성 및 3주 단위 상세 공정표 작성.</li>
+                            <li>지연 시 만회대책 수립 및 협력업체 정기 회의 진행.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 md:p-6 hover:bg-slate-50 transition-colors">
+                        <h4 class="font-bold text-lg text-slate-800 mb-1"><i class="fas fa-hard-hat text-amber-600 mr-2"></i>CM (시공 책임자)</h4>
+                        <p class="text-sm text-slate-600 mb-2">현장 시공 분야 공정표 작성 및 생산성 관리 책임.</p>
+                        <ul class="list-disc pl-5 text-sm text-slate-500">
+                            <li>Level 4 실행공정표(TWDS, EMRS 등) 수립 및 주간/월간 현황 보고.</li>
+                            <li>주요 물량 생산성 기록 및 공정률 측정 데이터 제공.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 md:p-6 hover:bg-slate-50 transition-colors">
+                        <h4 class="font-bold text-lg text-slate-800 mb-1"><i class="fas fa-file-signature text-emerald-600 mr-2"></i>PCM (공무 책임자)</h4>
+                        <p class="text-sm text-slate-600 mb-2">현황 보고 취합 및 클레임/기록 관리 책임.</p>
+                        <ul class="list-disc pl-5 text-sm text-slate-500">
+                            <li>현황보고서(공무분야 포함) 통합 취합 및 내부/발주자 정기 회의 주관.</li>
+                            <li>EOT 등 클레임(Claim) 진행의 실무 주체 및 현장 사진/기록 관리.</li>
+                        </ul>
+                    </div>
+                    <div class="p-4 md:p-6 hover:bg-slate-50 transition-colors">
+                        <h4 class="font-bold text-lg text-slate-800 mb-1"><i class="fas fa-network-wired text-rose-600 mr-2"></i>Scheduler (공정관리자)</h4>
+                        <p class="text-sm text-slate-600 mb-2">프로젝트 전체 공정관리 시스템 통합 및 분석 <strong>(Core Role)</strong></p>
+                        <ul class="list-disc pl-5 text-sm text-slate-500">
+                            <li>각 분야별 공정표 통합(Integration) 및 Level 3 CPM Network 구축 및 업데이트.</li>
+                            <li>실적 공정률 통합 산정, 지연 예상 시 만회대책(Recovery Plan) 가이드.</li>
+                            <li>클레임 발생 시 전문적인 일정 지연 분석(Delay Analysis) 지원 및 As-Built 작성.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+</body>
+</html>
