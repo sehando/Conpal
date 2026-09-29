@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>프로젝트 전 주기 공정관리 역무 | compal.kr</title>
+<meta name="description" content="기획·입찰부터 준공·종료까지, 프로젝트 관리 전 주기에서 공정관리가 개입하는 주요 역무 21가지.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #f3f5f7;
+    --surface: #ffffff;
+    --ink: #17212b;
+    --muted: #5d6b79;
+    --line: #d9dfe5;
+    --p1: #1f3a5f;
+    --p2: #1c7a74;
+    --p3: #b0741a;
+    --p4: #a23e48;
+    --p5: #5b4b8a;
+    --focus: #0b57d0;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #12181f;
+      --surface: #1a232c;
+      --ink: #e7ecf1;
+      --muted: #9aa8b5;
+      --line: #2b3843;
+      --p1: #7fa6d8;
+      --p2: #55c2ba;
+      --p3: #e0a651;
+      --p4: #e07f89;
+      --p5: #a898dc;
+      --focus: #8ab4f8;
+    }
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 88px; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Noto Sans KR", "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  a:focus-visible { outline: 3px solid var(--focus); outline-offset: 3px; }
+
+  header.top {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 56px 24px 28px;
+  }
+  header.top h1 {
+    margin: 0 0 12px;
+    font-size: clamp(1.7rem, 4.2vw, 2.4rem);
+    font-weight: 700;
+    line-height: 1.3;
+    letter-spacing: -0.02em;
+  }
+  header.top p {
+    margin: 0;
+    max-width: 60ch;
+    color: var(--muted);
+    font-size: 1.02rem;
+  }
+
+  /* Phase bar: acts like a compact schedule bar; width = number of duties */
+  nav.phases {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: var(--bg);
+    padding: 10px 0 14px;
+    border-bottom: 1px solid var(--line);
+  }
+  nav.phases ol {
+    list-style: none;
+    margin: 0 auto;
+    padding: 0 24px;
+    max-width: 880px;
+    display: flex;
+    gap: 4px;
+  }
+  nav.phases li { min-width: 0; }
+  nav.phases a {
+    display: block;
+    height: 100%;
+    padding: 8px 10px;
+    border-radius: 4px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 500;
+    line-height: 1.3;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  nav.phases a small { display: block; font-weight: 400; opacity: .85; font-size: .72rem; }
+  nav.phases .n1 { flex: 4; } nav.phases .n1 a { background: var(--p1); }
+  nav.phases .n2 { flex: 5; } nav.phases .n2 a { background: var(--p2); }
+  nav.phases .n3 { flex: 5; } nav.phases .n3 a { background: var(--p3); }
+  nav.phases .n4 { flex: 4; } nav.phases .n4 a { background: var(--p4); }
+  nav.phases .n5 { flex: 3; } nav.phases .n5 a { background: var(--p5); }
+  @media (prefers-color-scheme: dark) { nav.phases a { color: #10161c; } }
+
+  main { max-width: 880px; margin: 0 auto; padding: 8px 24px 72px; }
+
+  section.phase {
+    margin-top: 40px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 6px solid var(--c);
+    border-radius: 6px;
+  }
+  #p1 { --c: var(--p1); } #p2 { --c: var(--p2); } #p3 { --c: var(--p3); }
+  #p4 { --c: var(--p4); } #p5 { --c: var(--p5); }
+
+  section.phase > header {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    padding: 22px 28px 14px;
+  }
+  .phase-no {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--c);
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+  }
+  .phase h2 { margin: 0; font-size: 1.35rem; font-weight: 700; letter-spacing: -0.01em; }
+  .phase .count { margin-left: auto; color: var(--muted); font-size: .88rem; }
+
+  ul.duties { list-style: none; margin: 0; padding: 0 0 8px; }
+  ul.duties li {
+    display: grid;
+    grid-template-columns: 3.2rem 1fr;
+    gap: 4px 12px;
+    padding: 14px 28px;
+    border-top: 1px solid var(--line);
+  }
+  .code {
+    color: var(--c);
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    padding-top: 1px;
+  }
+  .title { font-weight: 500; font-size: 1.04rem; }
+  .title a { color: inherit; text-decoration-color: var(--c); text-underline-offset: 4px; }
+  .note {
+    grid-column: 2;
+    color: var(--muted);
+    font-size: .9rem;
+    margin-top: -2px;
+  }
+
+  footer {
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 0 24px 56px;
+    color: var(--muted);
+    font-size: .88rem;
+  }
+
+  @media (max-width: 560px) {
+    header.top { padding-top: 36px; }
+    nav.phases ol { padding: 0 12px; gap: 3px; }
+    nav.phases a { padding: 6px 6px; font-size: .7rem; }
+    nav.phases a small { display: none; }
+    main { padding: 4px 12px 56px; }
+    section.phase > header { padding: 18px 16px 12px; flex-wrap: wrap; }
+    ul.duties li { padding: 12px 16px; grid-template-columns: 2.6rem 1fr; }
+  }
+  @media print {
+    nav.phases { position: static; }
+    section.phase { break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <h1>프로젝트 전 주기에서 공정관리가 맡는 역무</h1>
+  <p>기획·입찰에서 준공·종료까지, 공정관리가 개입해야 하는 21가지 업무를 단계별로 정리했습니다. 각 항목은 경험을 바탕으로 한 개별 매뉴얼로 이어집니다.</p>
+</header>
+
+<nav class="phases" aria-label="프로젝트 단계">
+  <ol>
+    <li class="n1"><a href="#p1">기획·입찰<small>4개 역무</small></a></li>
+    <li class="n2"><a href="#p2">계약·착공 준비<small>5개 역무</small></a></li>
+    <li class="n3"><a href="#p3">시공<small>5개 역무</small></a></li>
+    <li class="n4"><a href="#p4">통제·변경<small>4개 역무</small></a></li>
+    <li class="n5"><a href="#p5">준공·종료<small>3개 역무</small></a></li>
+  </ol>
+</nav>
+
+<!--
+  항목별 매뉴얼을 연결할 때: 해당 <span class="title">…</span> 내용을
+  <a href="매뉴얼-주소">…</a> 로 감싸면 밑줄 링크로 표시됩니다.
+  각 <li>의 id(예: d-1-1)는 외부에서 바로 연결(#d-1-1)하는 용도로 쓸 수 있습니다.
+-->
+
+<main>
+
+  <section class="phase" id="p1" aria-labelledby="h1">
+    <header>
+      <span class="phase-no">1</span>
+      <h2 id="h1">기획·입찰 단계</h2>
+      <span class="count">4개 역무</span>
+    </header>
+    <ul class="duties">
+      <li id="d-1-1"><span class="code">1.1</span><span class="title">개략 공기 산정</span><span class="note">유사 프로젝트 실적 활용</span></li>
+      <li id="d-1-2"><span class="code">1.2</span><span class="title">입찰 공기 검토와 계약 공기의 적정성 판단</span></li>
+      <li id="d-1-3"><span class="code">1.3</span><span class="title">작업불능일수 반영</span><span class="note">기상, 공휴일</span></li>
+      <li id="d-1-4"><span class="code">1.4</span><span class="title">입찰 공정표 작성 수준과 리스크 반영</span></li>
+    </ul>
+  </section>
+
+  <section class="phase" id="p2" aria-labelledby="h2">
+    <header>
+      <span class="phase-no">2</span>
+      <h2 id="h2">계약·착공 준비 단계</h2>
+      <span class="count">5개 역무</span>
+    </header>
+    <ul class="duties">
+      <li id="d-2-1"><span class="code">2.1</span><span class="title">계약서상 공정 관련 조항 분석</span><span class="note">공정표 제출, 지체상금, 공기 연장 조건</span></li>
+      <li id="d-2-2"><span class="code">2.2</span><span class="title">공정관리계획서 작성</span></li>
+      <li id="d-2-3"><span class="code">2.3</span><span class="title">WBS 구성과 코드 체계</span><span class="note">공종, 공간, 책임 조직</span></li>
+      <li id="d-2-4"><span class="code">2.4</span><span class="title">캘린더 설정과 Baseline Schedule 작성·제출·승인 과정</span></li>
+      <li id="d-2-5"><span class="code">2.5</span><span class="title">진도 측정 방법과 가중치 설정</span></li>
+    </ul>
+  </section>
+
+  <section class="phase" id="p3" aria-labelledby="h3">
+    <header>
+      <span class="phase-no">3</span>
+      <h2 id="h3">시공 단계</h2>
+      <span class="count">5개 역무</span>
+    </header>
+    <ul class="duties">
+      <li id="d-3-1"><span class="code">3.1</span><span class="title">공정표 갱신 주기와 방법</span><span class="note">Update 원칙</span></li>
+      <li id="d-3-2"><span class="code">3.2</span><span class="title">진도 측정 실무와 실적 입력</span><span class="note">Progress measuring</span></li>
+      <li id="d-3-3"><span class="code">3.3</span><span class="title">룩어헤드(3주) 공정과 주간 회의 운영</span></li>
+      <li id="d-3-4"><span class="code">3.4</span><span class="title">자재·장납기품 조달과 공정 연계</span></li>
+      <li id="d-3-5"><span class="code">3.5</span><span class="title">공종 간 간섭 조율, 자원 평준화</span></li>
+    </ul>
+  </section>
+
+  <section class="phase" id="p4" aria-labelledby="h4">
+    <header>
+      <span class="phase-no">4</span>
+      <h2 id="h4">통제·변경 단계</h2>
+      <span class="count">4개 역무</span>
+    </header>
+    <ul class="duties">
+      <li id="d-4-1"><span class="code">4.1</span><span class="title">지연 원인 분석과 만회 대책</span><span class="note">Fast-tracking, Crashing</span></li>
+      <li id="d-4-2"><span class="code">4.2</span><span class="title">설계 변경·추가 공사의 공기 영향 분석</span><span class="note">TIA (Time Impact Analysis)</span></li>
+      <li id="d-4-3"><span class="code">4.3</span><span class="title">공기 연장 청구와 지연 클레임 대응</span></li>
+      <li id="d-4-4"><span class="code">4.4</span><span class="title">발주처·감리 보고 체계</span></li>
+    </ul>
+  </section>
+
+  <section class="phase" id="p5" aria-labelledby="h5">
+    <header>
+      <span class="phase-no">5</span>
+      <h2 id="h5">준공·종료 단계</h2>
+      <span class="count">3개 역무</span>
+    </header>
+    <ul class="duties">
+      <li id="d-5-1"><span class="code">5.1</span><span class="title">As-built 공정표와 준공 공기 정리</span></li>
+      <li id="d-5-2"><span class="code">5.2</span><span class="title">지체상금 정산과 클레임 마무리</span></li>
+      <li id="d-5-3"><span class="code">5.3</span><span class="title">실적 데이터 축적과 사후 평가</span><span class="note">Lessons Learned 체계화</span></li>
+    </ul>
+  </section>
+
+</main>
+
+<footer>compal.kr · 건설공정관리 경험집</footer>
+
+</body>
+</html>
