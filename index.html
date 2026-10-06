@@ -297,8 +297,22 @@
       각 항목은 수행 방법, 교훈(Lessons Learned), 권장 방식 순서로 설명하며, 경우에 따라 계산 도구도 함께 제공합니다.
     </p>
     <p class="sf-contact">
-      문의 · 제안 <a href="mailto:jin12.kim@conpal.co.kr">jin12.kim@conpal.co.kr</a>
+      문의 · 제안 <a href="#" id="contactLink" rel="nofollow">이메일 보내기</a>
     </p>
+    
+    <script>
+      (function () {
+        var user = 'jin12.kim', host = 'conpal.co.kr';
+        var link = document.getElementById('contactLink');
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          var addr = user + '@' + host;
+          link.textContent = addr;                 // 주소를 화면에 보여 줌 (복사용)
+          link.href = 'mailto:' + addr;
+          window.location.href = 'mailto:' + addr; // 메일 프로그램 열기
+        });
+      })();
+    </script>
     <p class="sf-copy">
       © 2026 Conpal.kr · 본 사이트의 내용은 참고용이며, 인용 시 출처를 밝혀 주세요.
     </p>
