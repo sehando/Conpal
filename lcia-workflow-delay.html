@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LCIA 정식 중재 절차 & 지연분석 전문가 협업 비주얼 로드맵</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Noto Sans KR"', 'Inter', 'sans-serif'],
+          },
+          colors: {
+            navy: {
+              800: '#0f172a',
+              900: '#0b1120',
+              950: '#050814',
+            },
+            arbit: {
+              blue: '#2563eb',
+              cyan: '#06b6d4',
+              indigo: '#6366f1',
+              emerald: '#10b981',
+              amber: '#f59e0b',
+              rose: '#f43f5e',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    .glow-effect {
+      box-shadow: 0 0 25px -5px rgba(37, 99, 235, 0.25);
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #1e293b;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #475569;
+      border-radius: 4px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #64748b;
+    }
+    .tab-active {
+      background: #2563eb !important;
+      color: #ffffff !important;
+      box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+    }
+  </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans min-h-screen selection:bg-blue-600 selection:text-white">
+
+  <header class="border-b border-slate-800 bg-slate-900/80 backdrop-blur sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center space-x-3">
+        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-indigo-500 flex items-center justify-center shadow-lg shadow-blue-500/20 text-white font-black text-xl">
+          ⚖️
+        </div>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold tracking-tight text-white flex items-center gap-2">
+            LCIA 정식 중재 절차 & 지연분석(Delay Analysis) 로드맵
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-500/20 text-blue-400 border border-blue-500/30">London Seat / 3 Arbitrators</span>
+          </h1>
+          <p class="text-xs text-slate-400">대형 플랜트 분쟁 대응을 위한 사내 지연분석가(Delay Analyst) - 전문가 협업 비주얼 가이드</p>
+        </div>
+      </div>
+
+      <!-- Quick Nav Buttons -->
+      <nav class="flex items-center gap-1.5 p-1 bg-slate-800/80 rounded-xl border border-slate-700 text-xs font-medium">
+        <button onclick="switchView('timeline')" id="btn-timeline" class="px-3.5 py-1.5 rounded-lg transition tab-active">
+          1. 중재 절차 타임라인
+        </button>
+        <button onclick="switchView('network')" id="btn-network" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/60 transition">
+          2. 전문가 R&R 네트워크
+        </button>
+        <button onclick="switchView('matrix')" id="btn-matrix" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/60 transition">
+          3. 단계별 상세 역무 매트릭스
+        </button>
+        <button onclick="switchView('strategy')" id="btn-strategy" class="px-3.5 py-1.5 rounded-lg text-slate-300 hover:text-white hover:bg-slate-700/60 transition">
+          4. 핵심 기술 방어 전략
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
+
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center space-x-4">
+        <div class="w-12 h-12 rounded-xl bg-blue-500/10 border border-blue-500/20 flex items-center justify-center text-blue-400 text-2xl font-bold">
+          🏛️
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 uppercase font-semibold">중재 관할 & 준거법</div>
+          <div class="text-base font-bold text-slate-100">LCIA London / 영국법</div>
+          <div class="text-[11px] text-blue-400">3인 중재판정부 (단심제)</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center space-x-4">
+        <div class="w-12 h-12 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center text-indigo-400 text-2xl font-bold">
+          📊
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 uppercase font-semibold">담당자 포지션</div>
+          <div class="text-base font-bold text-slate-100">사내 지연분석 총괄</div>
+          <div class="text-[11px] text-indigo-400">공학 데이터 공급 & 검증 허브</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center space-x-4">
+        <div class="w-12 h-12 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center text-emerald-400 text-2xl font-bold">
+          🤝
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 uppercase font-semibold">협업 외부 전문가군</div>
+          <div class="text-base font-bold text-slate-100">로펌 + 지연 + 비용</div>
+          <div class="text-[11px] text-emerald-400">대리인 / Delay Expert / Quantum</div>
+        </div>
+      </div>
+
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-4 flex items-center space-x-4">
+        <div class="w-12 h-12 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center text-amber-400 text-2xl font-bold">
+          🎯
+        </div>
+        <div>
+          <div class="text-xs text-slate-400 uppercase font-semibold">최우선 과제</div>
+          <div class="text-base font-bold text-slate-100">CP 인과관계 & 간접비 연계</div>
+          <div class="text-[11px] text-amber-400">Time-Quantum Linkage 입증</div>
+        </div>
+      </div>
+    </section>
+
+    <div id="view-timeline" class="space-y-6">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+        <div class="flex flex-col md:flex-row md:items-center justify-between pb-6 border-b border-slate-800 gap-4">
+          <div>
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span class="inline-block w-2.5 h-6 bg-blue-500 rounded-full"></span>
+              LCIA 정식 중재 종합 6단계 로드맵 (Chronological Flow)
+            </h2>
+            <p class="text-sm text-slate-400 mt-1">각 단계를 클릭하면 지연분석 담당자의 핵심 업무와 상대방의 주요 공격 포인트를 즉시 확인할 수 있습니다.</p>
+          </div>
+          <div class="text-xs bg-slate-800 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300 flex items-center gap-2">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            전체 예상 소요 기간: 약 18~28개월 (사안 복잡도 기준)
+          </div>
+        </div>
+
+        <!-- Visual Step Cards Bar -->
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3 py-6">
+          <!-- Step 1 -->
+          <div onclick="selectPhase(1)" id="phase-card-1" class="phase-card cursor-pointer p-4 rounded-xl border-2 border-blue-500 bg-blue-500/10 hover:border-blue-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-blue-400 font-bold mb-1">
+                <span>PHASE 1</span>
+                <span>D-Day~2M</span>
+              </div>
+              <div class="font-bold text-sm text-white">중재 신청 및 판정부 구성</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>📋 PO1 절차명령 확정</span>
+            </div>
+          </div>
+
+          <!-- Step 2 -->
+          <div onclick="selectPhase(2)" id="phase-card-2" class="phase-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-indigo-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-indigo-400 font-bold mb-1">
+                <span>PHASE 2</span>
+                <span>4~8M</span>
+              </div>
+              <div class="font-bold text-sm text-white">1차 본안 서면 & 감정서 제출</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>📑 SoC / SoD 교환</span>
+            </div>
+          </div>
+
+          <!-- Step 3 -->
+          <div onclick="selectPhase(3)" id="phase-card-3" class="phase-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-amber-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-amber-400 font-bold mb-1">
+                <span>PHASE 3</span>
+                <span>2~3M</span>
+              </div>
+              <div class="font-bold text-sm text-white">문서 제출/개시 (Redfern)</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>🔍 P6 스케줄 원본 개시</span>
+            </div>
+          </div>
+
+          <!-- Step 4 -->
+          <div onclick="selectPhase(4)" id="phase-card-4" class="phase-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-emerald-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-emerald-400 font-bold mb-1">
+                <span>PHASE 4</span>
+                <span>3~5M</span>
+              </div>
+              <div class="font-bold text-sm text-white">2차 반박 서면 & 전문가 회의</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>🤝 Joint Statement 도출</span>
+            </div>
+          </div>
+
+          <!-- Step 5 -->
+          <div onclick="selectPhase(5)" id="phase-card-5" class="phase-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-rose-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-rose-400 font-bold mb-1">
+                <span>PHASE 5</span>
+                <span>1~3주</span>
+              </div>
+              <div class="font-bold text-sm text-white">본안 심리 (Hearing in London)</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>🎙️ 반대신문 & 대질(Hot-tubbing)</span>
+            </div>
+          </div>
+
+          <!-- Step 6 -->
+          <div onclick="selectPhase(6)" id="phase-card-6" class="phase-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:border-purple-400 transition flex flex-col justify-between">
+            <div>
+              <div class="flex items-center justify-between text-xs text-purple-400 font-bold mb-1">
+                <span>PHASE 6</span>
+                <span>3~6M</span>
+              </div>
+              <div class="font-bold text-sm text-white">심리 후 서면 및 최종 판정</div>
+            </div>
+            <div class="text-[11px] text-slate-400 mt-3 flex items-center gap-1">
+              <span>🏆 Final Award 단심 확정</span>
+            </div>
+          </div>
+        </div>
+
+        <div id="phase-detail-box" class="mt-4 p-6 rounded-2xl bg-slate-800/60 border border-slate-700 space-y-6">
+          <!-- Dynamically populated via JS selectPhase -->
+        </div>
+      </div>
+    </div>
+
+    <div id="view-network" class="space-y-6 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="inline-block w-2.5 h-6 bg-indigo-500 rounded-full"></span>
+            전문가 협업 인터랙티브 R&R 허브 (Collaboration Ecosystem)
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">지연분석 담당자는 중재팀의 '공학적 팩트 허브'입니다. 상대방 카드를 클릭해 세부 협업 방식을 확인하세요.</p>
+        </div>
+
+        <!-- Visual Network Diagram Layout -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          
+          <!-- Central Hub: Internal Delay Analyst -->
+          <div class="lg:col-span-4 bg-gradient-to-br from-blue-900/40 via-slate-900 to-indigo-900/40 border-2 border-blue-500/50 rounded-2xl p-6 text-center space-y-4 shadow-xl shadow-blue-900/20">
+            <div class="w-20 h-20 mx-auto rounded-2xl bg-blue-600/30 border border-blue-400 flex items-center justify-center text-4xl shadow-lg">
+              🧑‍💻
+            </div>
+            <div>
+              <span class="px-3 py-1 rounded-full text-xs font-bold bg-blue-500/20 text-blue-300 border border-blue-400/30">중추적 데이터 공급자</span>
+              <h3 class="text-lg font-bold text-white mt-2">사내 지연분석 담당자 (나)</h3>
+              <p class="text-xs text-slate-300 mt-1">Internal Delay Analyst / Project Controls</p>
+            </div>
+            <div class="text-left text-xs text-slate-300 bg-slate-900/80 p-3.5 rounded-xl border border-slate-800 space-y-2">
+              <div class="font-semibold text-blue-400 flex items-center gap-1">📌 핵심 사명:</div>
+              <p>• P6 원본 스케줄(.xer) 무결성 입증 및 아카이빙</p>
+              <p>• 동시대 기록(Contemporaneous records) 추출 및 매핑</p>
+              <p>• 상대방 공정 분석의 논리 왜곡(Biased Logic) 즉각 반박</p>
+              <p>• 시간 지연(EOT)과 실제 간접비 손실(Quantum)의 정합성 보장</p>
+            </div>
+          </div>
+
+          <!-- Orbiting Expert Cards -->
+          <div class="lg:col-span-8 grid grid-cols-1 sm:grid-cols-2 gap-4">
+            
+            <!-- Expert 1: Legal Counsel -->
+            <div onclick="selectExpert('counsel')" id="card-counsel" class="expert-card cursor-pointer p-4 rounded-xl border-2 border-indigo-500 bg-slate-800/80 hover:bg-slate-800 transition space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl bg-indigo-500/20 border border-indigo-400 flex items-center justify-center text-xl">
+                  ⚖️
+                </div>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300">법적 대리인</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm">외부 법률대리인 (국제중재 로펌)</h4>
+                <p class="text-xs text-slate-400">대형 영미계 로펌 중재팀</p>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">클레임 서면(Memorial) 작성, 공학적 인과관계의 법리 매핑, Redfern 문서개시 총괄</p>
+            </div>
+
+            <!-- Expert 2: Independent Delay Expert -->
+            <div onclick="selectExpert('delay')" id="card-delay" class="expert-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:bg-slate-800 transition space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl bg-cyan-500/20 border border-cyan-400 flex items-center justify-center text-xl">
+                  ⏱️
+                </div>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-cyan-500/20 text-cyan-300">독립 지연감정인</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm">독립 지연감정인 (HKA 등)</h4>
+                <p class="text-xs text-slate-400">Independent Delay Expert</p>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">중재판정부용 객관적 감정보고서(Window/TIA) 작성, 상대방 감정인과 Joint Meeting</p>
+            </div>
+
+            <!-- Expert 3: Independent Quantum Expert -->
+            <div onclick="selectExpert('quantum')" id="card-quantum" class="expert-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:bg-slate-800 transition space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl bg-emerald-500/20 border border-emerald-400 flex items-center justify-center text-xl">
+                  💰
+                </div>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-300">독립 비용감정인</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm">독립 비용감정인 (Quantum Expert)</h4>
+                <p class="text-xs text-slate-400">Time-related Cost / Prolongation</p>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">지연 일수와 실제 간접비(Site-wide vs 호기별 전담 인력) 완벽 연결 및 청구액 산정</p>
+            </div>
+
+            <!-- Expert 4: Fact Witnesses -->
+            <div onclick="selectExpert('witness')" id="card-witness" class="expert-card cursor-pointer p-4 rounded-xl border border-slate-800 bg-slate-800/40 hover:bg-slate-800 transition space-y-3">
+              <div class="flex items-center justify-between">
+                <div class="w-10 h-10 rounded-xl bg-amber-500/20 border border-amber-400 flex items-center justify-center text-xl">
+                  👷
+                </div>
+                <span class="text-xs font-semibold px-2 py-0.5 rounded bg-amber-500/20 text-amber-300">사내 사실증인</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-white text-sm">현장 사실증인 (Fact Witness)</h4>
+                <p class="text-xs text-slate-400">당시 현장소장, 공무/공정팀장</p>
+              </div>
+              <p class="text-xs text-slate-300 line-clamp-2">진술서(Witness Statement) 작성 시 날짜·공정 정합성 검증, 모의 반대신문 방어</p>
+            </div>
+
+          </div>
+        </div>
+
+        <div id="expert-detail-box" class="p-6 rounded-2xl bg-slate-800/60 border border-slate-700">
+          <!-- Populated by JS selectExpert -->
+        </div>
+      </div>
+    </div>
+
+    <div id="view-matrix" class="space-y-6 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-800 gap-3">
+          <div>
+            <h2 class="text-xl font-bold text-white flex items-center gap-2">
+              <span class="inline-block w-2.5 h-6 bg-emerald-500 rounded-full"></span>
+              단계별 중재 절차 & 지연분석 역무 실무 매트릭스
+            </h2>
+            <p class="text-sm text-slate-400 mt-1">LCIA 규칙 및 런던 국제중재 실무에 기반한 업무 분장 및 체크리스트</p>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="filterMatrix('all')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs bg-emerald-600 text-white font-semibold">전체 보기</button>
+            <button onclick="filterMatrix('pre-hearing')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 hover:bg-slate-700">심리 전 단계</button>
+            <button onclick="filterMatrix('hearing')" class="matrix-filter-btn px-3 py-1 rounded-lg text-xs bg-slate-800 text-slate-300 hover:bg-slate-700">심리 & 판정</button>
+          </div>
+        </div>
+
+        <!-- Interactive Table with Tailwind -->
+        <div class="overflow-x-auto custom-scrollbar">
+          <table class="w-full text-left text-xs border-collapse">
+            <thead>
+              <tr class="bg-slate-800/80 text-slate-300 border-b border-slate-700 uppercase tracking-wider font-semibold">
+                <th class="p-3.5">중재 단계 & 일정</th>
+                <th class="p-3.5">LCIA 절차 핵심</th>
+                <th class="p-3.5 text-blue-400">지연분석 담당자 핵심 역무 (나)</th>
+                <th class="p-3.5">협업 대상</th>
+                <th class="p-3.5 text-emerald-400">최종 산출물</th>
+              </tr>
+            </thead>
+            <tbody id="matrix-tbody" class="divide-y divide-slate-800">
+              <!-- Row 1 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="pre-hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-blue-500/20 text-blue-400 text-[10px] mr-1.5">Phase 1</span><br/>
+                  중재 개시 및 판정부 구성<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(D-Day ~ 2M)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • 중재신청서/답변서 제출<br/>
+                  • 3인 중재판정부 선임 합의<br/>
+                  • Case Management (PO1)
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • 기제출된 전문가 검토(ED) 스케줄 DB 아카이빙<br/>
+                  • 호기별(1~4호기) 원본 .xer 파일 무결성 잠금(Lock)<br/>
+                  • 외부 로펌/전문가용 기초 팩트 패키지 구성
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  법률대리인<br/>독립 지연감정인
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  Master Schedule DB<br/>공정 히스토리 요약표
+                </td>
+              </tr>
+
+              <!-- Row 2 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="pre-hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-400 text-[10px] mr-1.5">Phase 2</span><br/>
+                  1차 본안 서면 공방<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(약 4~8M)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • 청구서(Statement of Claim) 제출<br/>
+                  • 답변서 및 반소(Defence) 제출<br/>
+                  • 1차 전문가 보고서 & 사실증인 진술서
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • 지연 이벤트별 통지(Notice) 및 동시대 기록 매핑<br/>
+                  • 외부 지연감정인(HKA) 분석 모델(Window/TIA) 팩트체크<br/>
+                  • 캘린더/로직 변경 사유 현장 인터뷰 및 방어<br/>
+                  • EOT 일수와 간접비(Quantum) 연계 데이터 제공
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  법률대리인<br/>지연감정인<br/>비용감정인<br/>사실증인
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  1차 지연감정보고서 부속 스케줄<br/>이벤트별 연표(Chronology)
+                </td>
+              </tr>
+
+              <!-- Row 3 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="pre-hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] mr-1.5">Phase 3</span><br/>
+                  문서 개시/제출 절차<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(Redfern / 약 2~3M)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • Redfern Schedule 작성 및 교환<br/>
+                  • 상대방 요청에 대한 거부사유 개진<br/>
+                  • 중재판정부의 공개 명령 이행
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • <span class="text-amber-400 font-bold">[공격]</span> 발주처 승인 지연/인터페이스 미공개 문서 리스트업<br/>
+                  • <span class="text-rose-400 font-bold">[방어]</span> 상대방의 P6 수정이력 요구에 대한 필터링/보안 검토<br/>
+                  • 내부 이메일·회의록 중 지연 귀책 민감 문서 대리인 사전 브리핑
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  법률대리인<br/>사내 문서관리팀
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  Redfern Schedule 신청 목록<br/>개시 대상 공정 문서철
+                </td>
+              </tr>
+
+              <!-- Row 4 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="pre-hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-emerald-500/20 text-emerald-400 text-[10px] mr-1.5">Phase 4</span><br/>
+                  2차 서면 및 전문가 합동회의<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(약 3~5M)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • 재항변서(Reply) 및 재답변서(Rejoinder)<br/>
+                  • 2차 반박 감정보고서(Rebuttal Report)<br/>
+                  • 양측 지연전문가 간 공식 회합(Joint Meeting)
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • 상대방 전문가 보고서(BRG 등)의 동시지연 주장 파쇄<br/>
+                  • Joint Meeting 대비: 사수할 CP vs 양보 가능 구간 기준선 설정<br/>
+                  • 쟁점 대비표(Scott Schedule) 내 세부 수치 정밀 검증
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  독립 지연감정인<br/>법률대리인
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  반박 보고서(Rebuttal)<br/>Joint Expert Statement<br/>Scott Schedule
+                </td>
+              </tr>
+
+              <!-- Row 5 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-rose-500/20 text-rose-400 text-[10px] mr-1.5">Phase 5</span><br/>
+                  본안 심리 (Hearing in London)<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(약 1~3주간)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • 개정 변론(Opening Statements)<br/>
+                  • 사실증인 & 감정인 반대신문(Cross-exam)<br/>
+                  • 전문가 대질 신문 (Hot-tubbing)
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • <span class="text-amber-300 font-bold">런던 Hearing 현지 War Room 또는 백오피스 기술 지원</span><br/>
+                  • 상대방 변호사의 P6 왜곡 시 원본 데이터 즉시 역추적 및 반박 증거(Smoking Gun) 추출<br/>
+                  • 대리인 재반대신문(Re-direct)용 실시간 기술 질의서 작성
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  법률대리인<br/>지연감정인<br/>사내 중재 TF
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  일일 속기록 Fact-Check 메모<br/>실시간 Rebuttal Slide
+                </td>
+              </tr>
+
+              <!-- Row 6 -->
+              <tr class="hover:bg-slate-800/40 transition group" data-category="hearing">
+                <td class="p-3.5 font-bold text-white whitespace-nowrap">
+                  <span class="px-2 py-0.5 rounded bg-purple-500/20 text-purple-400 text-[10px] mr-1.5">Phase 6</span><br/>
+                  심리 후 서면 및 판정<br/>
+                  <span class="text-slate-400 font-normal text-[11px]">(심리 후 약 3~6M)</span>
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  • Post-Hearing Briefs 제출<br/>
+                  • 비용 청구서(Cost Submissions)<br/>
+                  • 최종 중재판정(Final Award) 발부
+                </td>
+                <td class="p-3.5 text-blue-300 font-medium">
+                  • 중재판정부의 추가 요청 시뮬레이션(특정 기간 EOT) 대응<br/>
+                  • 최종 서면 내 공정 분석 수치 오류 최종 확정<br/>
+                  • 판정 결과에 따른 후속 정산 및 클레임 영향 분석
+                </td>
+                <td class="p-3.5 text-slate-300">
+                  법률대리인<br/>사내 경영진
+                </td>
+                <td class="p-3.5 text-emerald-300 font-semibold">
+                  Post-Hearing Brief 공정 부속서<br/>판정 결과 분석보고서
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-strategy" class="space-y-6 hidden">
+      <div class="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-6">
+        <div class="border-b border-slate-800 pb-4">
+          <h2 class="text-xl font-bold text-white flex items-center gap-2">
+            <span class="inline-block w-2.5 h-6 bg-amber-500 rounded-full"></span>
+            지연분석 담당자의 핵심 4대 기술 방어 및 공격 전략
+          </h2>
+          <p class="text-sm text-slate-400 mt-1">실제 국제중재 심리에서 승패를 좌우하는 기술적 쟁점별 액션 가이드</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          
+          <!-- Strategy 1: P6 Schedule Integrity -->
+          <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 space-y-3.5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-blue-500/20 text-blue-400 flex items-center justify-center font-bold text-lg">
+                01
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base">P6 마스터 공정표 무결성 (Integrity) 확보</h3>
+                <span class="text-xs text-blue-400 font-semibold">기준선 왜곡 공격 원천 차단</span>
+              </div>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-blue-400">✔</span>
+                <span><strong>전 차수 .xer 파일 프리징:</strong> Baseline Rev.0부터 각 호기 준공 시점까지의 모든 업데이트 버전을 해시코드 수준으로 보존하고 변경 이력(Change Log)을 전수 정리합니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-blue-400">✔</span>
+                <span><strong>임의 로직 변경(Logic Tie) 소명:</strong> 상대방 변호사는 의도적인 Lag 부여나 관계선 변경으로 지연을 조작했다고 공격하므로, 변경 당시의 현장 기술회의록을 사전 확보해야 합니다.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Strategy 2: Multi-Unit Critical Path Dynamics -->
+          <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 space-y-3.5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-bold text-lg">
+                02
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base">호기별(Unit 1~4) 크리티컬 패스 전이 입증</h3>
+                <span class="text-xs text-indigo-400 font-semibold">선행 호기 완료 후 후속 호기 영향</span>
+              </div>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-400">✔</span>
+                <span><strong>최후 준공 호기 중심 경로화:</strong> 1~3호기 준공 후 최후 호기(예: Unit 4)가 프로젝트 전체 크리티컬 패스를 장악한 메커니즘을 As-Planned vs As-Built 윈도우로 명확히 시각화합니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-indigo-400">✔</span>
+                <span><strong>공용 시설(Common Facilities) 인터페이스:</strong> 원자로 공통 구역 및 전력 연계 지연이 개별 호기 공정에 순차적으로 전파된 인과관계를 입증합니다.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Strategy 3: Concurrent Delay Defense -->
+          <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 space-y-3.5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-rose-500/20 text-rose-400 flex items-center justify-center font-bold text-lg">
+                03
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base">동시지연(Concurrent Delay) 주장 방어</h3>
+                <span class="text-xs text-rose-400 font-semibold">상대방 감정인(BRG 등)의 단골 공격 방어</span>
+              </div>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400">✔</span>
+                <span><strong>지배적 원인(Dominant Cause) 원칙 활용:</strong> 영국법 및 SCL Protocol에 따라 시공사의 경미한 지연과 발주처의 중대한 설계 변경/규제 지연이 겹쳤을 때 실질적 임계 원인을 분리해 냅니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-rose-400">✔</span>
+                <span><strong>발주처 귀책의 선행성(First in Time):</strong> 시공사의 생산성 저하나 결함 조치는 발주처의 선행 작업 지연으로 인한 파생 결과(Secondary effect)임을 작업일보로 규명합니다.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Strategy 4: Time-Quantum Linkage -->
+          <div class="bg-slate-800/60 border border-slate-700/80 rounded-2xl p-5 space-y-3.5">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/20 text-emerald-400 flex items-center justify-center font-bold text-lg">
+                04
+              </div>
+              <div>
+                <h3 class="font-bold text-white text-base">Time-Quantum 연계 (시간-간접비 입증)</h3>
+                <span class="text-xs text-emerald-400 font-semibold">공기연장 일수를 실제 돈으로 전환</span>
+              </div>
+            </div>
+            <ul class="text-xs text-slate-300 space-y-2 leading-relaxed">
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400">✔</span>
+                <span><strong>Site-wide vs Unit 전담 리소스 분리:</strong> 전체 현장 공통 관리 인력(PM, 공무 등)과 특정 호기에 국한된 인력을 명확히 구분하여 지연 기간 배부 왜곡 시비를 사전에 차단합니다.</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <span class="text-emerald-400">✔</span>
+                <span><strong>준공 임계 시점 투입 인력 성격:</strong> 진척률 98% 이후 잔여 작업(Punch list) 및 시운전 지원에 묶여 있던 인력의 Time-related 성격을 명확한 조직도로 소명합니다.</span>
+              </li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    // Phase Data Store
+    const phaseData = {
+      1: {
+        title: "Phase 1: 중재 신청 및 중재판정부 구성 (Tribunal Formation)",
+        period: "중재 개시 ~ 약 2개월",
+        badge: "D-Day ~ 2M",
+        badgeColor: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+        summary: "신청서/답변서 교환 및 3인의 중재인(영국법 전문 2인 + 의장중재인) 선임과 절차명령 제1호(PO1)를 확정하는 단계입니다.",
+        myRole: [
+          "기존 전문가 검토(Expert Determination) 단계의 공정 데이터베이스 전체 백업 및 동결(Lock)",
+          "호기별(Unit 1~4) 최종 As-built 공정표(.xer) 버전 픽스 및 무결성 검증 (임의 변경 흔적 제거)",
+          "외부 로펌(대리인) 및 착수 예정인 독립 지연감정인(HKA 등)에게 제공할 기초 공정 패키지 구축",
+          "대리인과 함께 PO1 절차 일정(서면 교환 일정, Redfern 일정, Hearing 기간) 타당성 검토 지원"
+        ],
+        counterparts: "외부 법률대리인(로펌), 사내 중재대응 TF, 계약관리팀",
+        pitfall: "이 단계에서 공정표 버전을 제대로 정리해두지 않으면 향후 서면 작성 시 데이터 불일치로 신뢰성에 치명상을 입게 됩니다."
+      },
+      2: {
+        title: "Phase 2: 1차 본안 서면 공방 (Claim & Defence Pleadings)",
+        period: "약 4~8개월 소요",
+        badge: "4~8M",
+        badgeColor: "bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
+        summary: "청구서(SoC) 및 답변서/반소(SoD), 사실증인 진술서, 1차 독립 지연/비용 감정인 보고서가 공식 제출되는 본격적인 서면 공방입니다.",
+        myRole: [
+          "지연 이벤트별 계약적 통지(Notice) 및 동시대 기록(Contemporaneous records, 회의록/일보) 매핑",
+          "당측 독립 지연감정인의 분석 모델(Window Analysis / TIA)에 대한 기술적 팩트 체크 및 피드백",
+          "공정표 내 Logic tie 및 Calendar 수정에 대한 이유를 현장 기록을 기반으로 감정인에게 설명",
+          "공기연장(EOT) 일수와 투입 인력/비용 연계(Time-Quantum Interface)를 위한 기초 조직도/투입 데이터 제공"
+        ],
+        counterparts: "외부 법률대리인, 독립 지연감정인(HKA), 독립 비용감정인(Quantum), 현장 사실증인(PM/공무)",
+        pitfall: "사실증인의 구두 기억과 P6 공정표 상의 실제 날짜가 어긋나면 상대방의 공격 타깃이 되므로 사전 일치 작업이 필수입니다."
+      },
+      3: {
+        title: "Phase 3: 문서 제출/개시 절차 (Redfern Schedule)",
+        period: "약 2~3개월 소요",
+        badge: "2~3M",
+        badgeColor: "bg-amber-500/20 text-amber-400 border-amber-500/30",
+        summary: "상호 보유한 비특권(Non-privileged) 핵심 문서를 강제로 요청하고 제출하는 영미법계 중재의 핵심 입증 단계입니다.",
+        myRole: [
+          "[공격] 발주처/상대방에게 요구할 미공개 공정 문서(승인 지연 로그, 원본 스케줄 변경 이력, 인터페이스 간섭 기록) 리스트업",
+          "[방어] 상대방이 요청한 당사의 P6 스케줄 수정 로그, 진척률 산출 백데이터에 대한 보안 및 관련성(Relevance) 검토",
+          "사내 이메일, 주간/월간 회의록 중 지연 귀책과 관련된 민감 문서를 선별하여 대리인에게 사전 브리핑"
+        ],
+        counterparts: "외부 법률대리인, 사내 IT/문서관리팀",
+        pitfall: "상대방에게 불리한 스모킹 건(Smoking Gun)을 요구하되, 우리 측이 제출할 의무가 생긴 문서 중 논리적 모순이 있는지 미리 파악해야 합니다."
+      },
+      4: {
+        title: "Phase 4: 2차 서면 공방 및 전문가 합동 회의 (Rebuttal & Joint Statement)",
+        period: "약 3~5개월 소요",
+        badge: "3~5M",
+        badgeColor: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+        summary: "상대방 주장을 반박하는 2차 보고서(Rebuttal)를 내고, 양측 지연전문가가 공식 회합하여 합의/불일치 명세서(Joint Statement)를 만듭니다.",
+        myRole: [
+          "상대방 지연감정인(BRG 등) 보고서 해부: 동시지연(Concurrent Delay) 억지 주장, 비판정경로 왜곡 등 기술적 오류 적발",
+          "전문가 합동회의(Joint Meeting) 대비: 양보 가능한 구간과 '절대 사수할 핵심 크리티컬 패스(Red-line)' 기준선 설정 지원",
+          "지연 일수 쟁점표(Scott Schedule) 작성 시 각 일자별 인과관계 수치 정합성 재검증"
+        ],
+        counterparts: "독립 지연감정인, 외부 법률대리인",
+        pitfall: "Joint Meeting에서 당측 감정인이 무리하게 양보하지 않도록 명확한 동시대 현장 증거 팩트를 쥐어주어야 합니다."
+      },
+      5: {
+        title: "Phase 5: 본안 심리 / 런던 청문회 (Hearing in London)",
+        period: "약 1~3주간 집중 진행",
+        badge: "1~3 Weeks",
+        badgeColor: "bg-rose-500/20 text-rose-400 border-rose-500/30",
+        summary: "런던 현지에서 대리인 변론, 사실증인 반대신문, 지연/비용 전문가 반대신문 및 전문가 대질(Hot-tubbing)이 펼쳐집니다.",
+        myRole: [
+          "런던 현지 Hearing War Room 또는 국내 백오피스 기술 지원 데스크 운영",
+          "상대방 변호사가 공정표를 왜곡하여 증인을 압박할 때, 원본 P6 데이터 즉각 역추적 및 반박 증거(Smoking Gun) 실시간 추출",
+          "우리 측 대리인의 재반대신문(Re-direct)용 실시간 기술 질의서 작성 지원",
+          "중재판정부(Tribunal)의 공정 일정 관련 즉석 질의에 대한 시뮬레이션 백데이터 즉시 공급"
+        ],
+        counterparts: "외부 법률대리인, 독립 지연감정인, 사내 경영진 및 중재 TF",
+        pitfall: "청문회장에서는 1분 1초가 급박하므로, 사전에 모든 P6 일정과 회의록이 하이퍼링크 수준으로 검색 가능한 인덱스를 구축해두어야 합니다."
+      },
+      6: {
+        title: "Phase 6: 심리 후 서면 및 최종 중재판정 (Award)",
+        period: "심리 후 약 3~6개월",
+        badge: "3~6M",
+        badgeColor: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+        summary: "속기록을 바탕으로 최종 요약 서면(Post-Hearing Briefs)을 제출하고 판정부의 최종 판정문(Final Award)을 수령합니다.",
+        myRole: [
+          "청문회 중 중재판정부가 추가로 요구한 특정 구간 공정 시뮬레이션 데이터 최종 정리",
+          "최종 서면에 인용될 공정 분석 수치 및 EOT 일수 오타/계산 오류 최종 검증",
+          "판정문 결과에 따른 후속 정산, 계약적 변경 범위, 추가 클레임 배제 범위 검토"
+        ],
+        counterparts: "외부 법률대리인, 사내 경영진",
+        pitfall: "LCIA 판정문은 단심제 성격이 강하므로 최종 확정 수치가 정확히 반영되었는지 산술적 검증을 빈틈없이 수행해야 합니다."
+      }
+    };
+
+    // Expert Data Store
+    const expertData = {
+      counsel: {
+        name: "외부 법률대리인 (국제중재 전문 로펌)",
+        role: "소송 전략 수립, 서면(Pleadings) 작성, 법정 변론 및 문서개시 총괄",
+        myInterface: [
+          "법적 주장(Legal Arguments)과 공학적 인과관계(Causation) 매핑: 소장에 기술될 클레임 사유를 P6 Critical Path와 1:1 연결",
+          "EOT 계약 조항(통지의무, 선행조건 등)을 충족하는 날짜별 증거자료 패키징",
+          "Redfern Schedule에서 상대방으로부터 반드시 확보해야 할 기술문서 요구 목록 작성 지원",
+          "청문회(Hearing) 모의 신문(Mock Cross-examination) 시 기술적 공격 포인트 자문"
+        ],
+        tip: "로펌 변호사들은 엔지니어가 아닙니다. 복잡한 CPM 로직을 간결한 바 차트(Bar Chart)와 타임라인 요약표로 변환하여 '스토리'로 이해시켜야 합니다."
+      },
+      delay: {
+        name: "독립 지연감정인 (Independent Delay Expert - 예: HKA)",
+        role: "중재판정부 제출용 객관적 공정 분석 보고서 작성 및 전문가 증언",
+        myInterface: [
+          "As-built 스케줄, 작업일보, 월간보고서, 현장 서신 데이터베이스 일체 제공",
+          "감정인이 구축한 Window Analysis 또는 TIA 모델의 기술적 타당성 팩트체크",
+          "상대방 감정인(BRG 등) 보고서 분석 후 역공(Rebuttal) 포인트 및 증거 발굴",
+          "Joint Expert Meeting 전 핵심 쟁점 및 비타협 영역(사수해야 할 EOT) 사전 협의"
+        ],
+        tip: "독립 감정인은 중재판정부에 대한 객관적 진실 의무(Duty to Tribunal)를 가집니다. 무리한 데이터 왜곡을 요구하기보다는 '객관적 사실 레코드'로 설득해야 합니다."
+      },
+      quantum: {
+        name: "독립 비용감정인 (Independent Quantum Expert)",
+        role: "지연 일수와 간접비(Prolongation Cost) 및 생산성 저하(Disruption) 비용 산정",
+        myInterface: [
+          "지연 인정 일수(Compensable Days) 구간별 현장 인력/장비 배치 현황 제공",
+          "현장 공통 리소스(Site-wide)와 특정 호기 전담 리소스(Unit-specific)의 명확한 분리 입증",
+          "준공 임계 시점(공정률 98% 이후) 투입 인력의 Time-related 성격 규명 및 지원"
+        ],
+        tip: "공정 지연에서 100일을 인정받아도 비용 감정에서 '실제 추가 발생 손실(Actual Cost)'로 증명되지 않으면 보상받지 못합니다. Time-Quantum 링크가 생명입니다."
+      },
+      witness: {
+        name: "사내 사실증인 (Fact Witness - 당시 현장소장, 공무/공정팀장)",
+        role: "현장 실행 사실에 대한 진술서(Witness Statement) 작성 및 법정 증언",
+        myInterface: [
+          "사실증인 진술서 초안 내 일정, 날짜, 사건 발생 순서에 대한 팩트체크",
+          "과거 발송 서신 및 회의록과 증인의 구두 진술 간 모순점 사전 점검 및 정합성 보정",
+          "런던 청문회 대비 모의 증인신문(Mock Cross-examination) 시 실무 기술 지원"
+        ],
+        tip: "증인의 인간적 기억과 당시 P6 데이터/회의록이 다를 경우 상대방 변호사에게 치명적인 공격을 받습니다. 반드시 '동시대 기록(Contemporaneous records)'과 일치시켜야 합니다."
+      }
+    };
+
+    function switchView(viewName) {
+      const views = ['timeline', 'network', 'matrix', 'strategy'];
+      views.forEach(v => {
+        const el = document.getElementById(`view-${v}`);
+        const btn = document.getElementById(`btn-${v}`);
+        if (v === viewName) {
+          el.classList.remove('hidden');
+          btn.classList.add('tab-active');
+          btn.classList.remove('text-slate-300');
+        } else {
+          el.classList.add('hidden');
+          btn.classList.remove('tab-active');
+          btn.classList.add('text-slate-300');
+        }
+      });
+    }
+
+    function selectPhase(phaseNum) {
+      document.querySelectorAll('.phase-card').forEach((card, idx) => {
+        if (idx + 1 === phaseNum) {
+          card.classList.add('border-blue-500', 'bg-blue-500/10');
+          card.classList.remove('border-slate-800', 'bg-slate-800/40');
+        } else {
+          card.classList.remove('border-blue-500', 'bg-blue-500/10');
+          card.classList.add('border-slate-800', 'bg-slate-800/40');
+        }
+      });
+
+      const data = phaseData[phaseNum];
+      const detailBox = document.getElementById('phase-detail-box');
+
+      detailBox.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-700 gap-2">
+          <div>
+            <div class="flex items-center gap-2">
+              <span class="px-2.5 py-0.5 rounded text-xs font-bold border ${data.badgeColor}">${data.badge}</span>
+              <span class="text-xs text-slate-400 font-medium">예상 기간: ${data.period}</span>
+            </div>
+            <h3 class="text-lg font-bold text-white mt-1.5">${data.title}</h3>
+          </div>
+          <div class="text-xs bg-slate-900/80 px-3 py-1.5 rounded-lg border border-slate-700 text-slate-300">
+            주요 협업 파트너: <span class="text-blue-400 font-semibold">${data.counterparts}</span>
+          </div>
+        </div>
+
+        <p class="text-xs sm:text-sm text-slate-300 leading-relaxed">${data.summary}</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 pt-2">
+          <div class="bg-slate-900/90 rounded-xl p-4 border border-blue-500/30 space-y-2">
+            <h4 class="text-xs font-bold text-blue-400 flex items-center gap-1.5 uppercase tracking-wide">
+              <span>🎯</span> 나의 핵심 역무 (지연분석 담당자)
+            </h4>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              ${data.myRole.map(item => `<li class="flex items-start gap-1.5"><span class="text-blue-400 font-bold">•</span><span>${item}</span></li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="bg-slate-900/90 rounded-xl p-4 border border-amber-500/30 space-y-2">
+            <h4 class="text-xs font-bold text-amber-400 flex items-center gap-1.5 uppercase tracking-wide">
+              <span>⚠️</span> 실무 주의점 & 상대방 예상 공격
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">${data.pitfall}</p>
+            <div class="mt-3 pt-3 border-t border-slate-800 text-[11px] text-slate-400">
+              💡 <strong>Tip:</strong> 감정보고서(Expert Report)에 들어갈 데이터는 추후 청문회에서 반대신문 대상이 되므로 한 치의 오차도 없어야 합니다.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function selectExpert(expertKey) {
+      document.querySelectorAll('.expert-card').forEach(card => {
+        card.classList.remove('border-indigo-500', 'bg-slate-800/80');
+        card.classList.add('border-slate-800', 'bg-slate-800/40');
+      });
+      const selectedCard = document.getElementById(`card-${expertKey}`);
+      if (selectedCard) {
+        selectedCard.classList.add('border-indigo-500', 'bg-slate-800/80');
+        selectedCard.classList.remove('border-slate-800', 'bg-slate-800/40');
+      }
+
+      const data = expertData[expertKey];
+      const box = document.getElementById('expert-detail-box');
+
+      box.innerHTML = `
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-700 gap-2">
+          <div>
+            <span class="text-xs font-bold text-indigo-400 uppercase tracking-wider">COLLABORATION GUIDE</span>
+            <h3 class="text-lg font-bold text-white mt-1">${data.name}</h3>
+            <p class="text-xs text-slate-400">${data.role}</p>
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+          <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-700 space-y-2">
+            <h4 class="text-xs font-bold text-blue-400 flex items-center gap-1.5 uppercase">
+              <span>🔄</span> 지연분석 담당자와의 인터페이스 업무
+            </h4>
+            <ul class="text-xs text-slate-300 space-y-1.5">
+              ${data.myInterface.map(item => `<li class="flex items-start gap-1.5"><span class="text-blue-400 font-bold">•</span><span>${item}</span></li>`).join('')}
+            </ul>
+          </div>
+
+          <div class="bg-slate-900/80 rounded-xl p-4 border border-indigo-500/30 space-y-2">
+            <h4 class="text-xs font-bold text-indigo-400 flex items-center gap-1.5 uppercase">
+              <span>💡</span> 전문가 협업 실무 노하우
+            </h4>
+            <p class="text-xs text-slate-300 leading-relaxed">${data.tip}</p>
+            <div class="mt-3 p-2.5 rounded-lg bg-indigo-950/40 border border-indigo-500/20 text-[11px] text-indigo-300">
+              📌 <strong>핵심 지침:</strong> 모든 주장과 분석의 근거는 반드시 사전에 작성된 당대 기록(Contemporaneous Project Records)에 기반해야 중재판정부의 신뢰를 얻습니다.
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function filterMatrix(category) {
+      const rows = document.querySelectorAll('#matrix-tbody tr');
+      const buttons = document.querySelectorAll('.matrix-filter-btn');
+
+      buttons.forEach(btn => {
+        btn.classList.remove('bg-emerald-600', 'text-white');
+        btn.classList.add('bg-slate-800', 'text-slate-300');
+      });
+      event.target.classList.add('bg-emerald-600', 'text-white');
+      event.target.classList.remove('bg-slate-800', 'text-slate-300');
+
+      rows.forEach(row => {
+        if (category === 'all' || row.getAttribute('data-category') === category) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    // Initialize default states on load
+    window.addEventListener('DOMContentLoaded', () => {
+      selectPhase(1);
+      selectExpert('counsel');
+    });
+  </script>
+</body>
+</html>
